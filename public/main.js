@@ -2,8 +2,52 @@ const main = () => {
   console.log('hello world')
 }
 
-let teamOneScore = 10
-let teamTwoScore = 10
+let teamOneScore = 0
+let teamTwoScore = 0
+let teamOneScoreMax = 0
+let teamTwoScoreMax = 0
+let teamOneScoreMin = 0
+let teamTwoScoreMin = 0
+
+const teamOneScoreMaxf = () => {
+  console.log('initiated max score')
+  if (teamOneScore > teamOneScoreMax) {
+    teamOneScoreMax = teamOneScore
+    document.querySelector(
+      '.output-message-team-1-max'
+    ).textContent = teamOneScoreMax
+  }
+}
+
+const teamOneScoreMinf = () => {
+  console.log('initiated max score')
+  if (teamOneScore < teamOneScoreMin) {
+    teamOneScoreMin = teamOneScore
+    document.querySelector(
+      '.output-message-team-1-min'
+    ).textContent = teamOneScoreMin
+  }
+}
+
+const teamTwoScoreMaxf = () => {
+  console.log('initiated max score2')
+  if (teamTwoScore > teamTwoScoreMax) {
+    teamTwoScoreMax = teamTwoScore
+    document.querySelector(
+      '.output-message-team-2-max'
+    ).textContent = teamTwoScoreMax
+  }
+}
+
+const teamTwoScoreMinf = () => {
+  console.log('initiated max score')
+  if (teamTwoScore < teamTwoScoreMin) {
+    teamTwoScoreMin = teamTwoScore
+    document.querySelector(
+      '.output-message-team-2-min'
+    ).textContent = teamTwoScoreMin
+  }
+}
 
 const updateTeamName1 = () => {
   console.log('calculating team name 1')
@@ -19,36 +63,59 @@ const updateTeamName2 = () => {
   document.querySelector('.team-2-name').textContent = teamTwo
 }
 
-const updateTeam1Scoreadd = () => {
-  console.log('calculating team score 1')
-  console.log('this is the team1 score: ' + teamOneScore)
-  teamOneScore = teamOneScore + 1
-  console.log('this is the new team1 score: ' + teamOneScore)
-  document.querySelector('.team-1-score').textContent = teamOneScore
+const updateTeam1ScoreAdd = () => {
+  if (teamOneScore < 20) {
+    teamOneScore = teamOneScore + 1
+    document.querySelector('.team-1-score').textContent = teamOneScore
+  } else if ((teamOneScore = 20)) {
+    teamOneScore = teamOneScore + 1
+    document.querySelector('.team-1-score').textContent = teamOneScore
+    disableButtons()
+    document.querySelector('.output-message').textContent = 'Team 1 Wins!!!'
+  }
 }
 
 const updateTeam1ScoreMinus = () => {
-  console.log('calculating team score 1')
-  console.log('this is the team1 score: ' + teamOneScore)
-  teamOneScore = teamOneScore - 1
-  console.log('this is the new team1 score: ' + teamOneScore)
+  if (teamOneScore > 0) {
+    teamOneScore = teamOneScore - 1
+  } else {
+    teamOneScore = 0
+  }
   document.querySelector('.team-1-score').textContent = teamOneScore
 }
 
 const updateTeam2ScoreAdd = () => {
-  console.log('calculating team score 2')
-  console.log('this is the team2 score: ' + teamTwoScore)
-  teamTwoScore = teamTwoScore + 1
-  console.log('this is the new team2 score: ' + teamTwoScore)
-  document.querySelector('.team-2-score').textContent = teamTwoScore
+  if (teamTwoScore < 20) {
+    teamTwoScore = teamTwoScore + 1
+    document.querySelector('.team-2-score').textContent = teamTwoScore
+  } else if ((teamTwoScore = 20)) {
+    teamTwoScore = teamTwoScore + 1
+    document.querySelector('.team-2-score').textContent = teamTwoScore
+    disableButtons()
+    document.querySelector('.output-message').textContent = 'Team 2 Wins!!!'
+  }
 }
 
 const updateTeam2ScoreMinus = () => {
-  console.log('calculating team score 2')
-  console.log('this is the team2 score: ' + teamTwoScore)
-  teamTwoScore = teamTwoScore - 1
-  console.log('this is the new team2 score: ' + teamTwoScore)
+  if (teamTwoScore > 0) {
+    teamTwoScore = teamTwoScore - 1
+  } else {
+    teamTwoScore = 0
+  }
   document.querySelector('.team-2-score').textContent = teamTwoScore
+}
+
+const disableButtons = () => {
+  document.querySelector('.team-1-add-1-button').disabled = true
+  document.querySelector('.team-2-add-1-button').disabled = true
+  document.querySelector('.team-1-subtract-1-button').disabled = true
+  document.querySelector('.team-2-subtract-1-button').disabled = true
+  document.querySelector('.update-team-1-name').disabled = true
+  document.querySelector('.update-team-2-name').disabled = true
+}
+
+function refreshPage() {
+  window.location.reload()
 }
 
 document.addEventListener('DOMContentLoaded', main)
@@ -60,13 +127,25 @@ document
   .addEventListener('click', updateTeamName2)
 document
   .querySelector('.team-1-add-1-button')
-  .addEventListener('click', updateTeam1Scoreadd)
+  .addEventListener('click', updateTeam1ScoreAdd)
+document
+  .querySelector('.team-1-add-1-button')
+  .addEventListener('click', teamOneScoreMaxf)
 document
   .querySelector('.team-1-subtract-1-button')
   .addEventListener('click', updateTeam1ScoreMinus)
 document
+  .querySelector('.team-1-subtract-1-button')
+  .addEventListener('click', teamOneScoreMinf)
+document
   .querySelector('.team-2-add-1-button')
   .addEventListener('click', updateTeam2ScoreAdd)
 document
+  .querySelector('.team-2-add-1-button')
+  .addEventListener('click', teamTwoScoreMaxf)
+document
   .querySelector('.team-2-subtract-1-button')
   .addEventListener('click', updateTeam2ScoreMinus)
+document
+  .querySelector('.team-2-subtract-1-button')
+  .addEventListener('click', teamTwoScoreMinf)

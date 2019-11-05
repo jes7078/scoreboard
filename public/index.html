@@ -8,12 +8,47 @@
     <link rel="stylesheet" href="/screen.css" />
   </head>
   <body>
-    <h1>My Score Board</h1>
+    <section class="top-header">
+      <h1>My Score Board</h1>
+
+      <section class="max-scoreboard">
+        <section class="team-one-max">
+          <p>
+            Team 1 max score:
+          </p>
+          <section class="output-message-team-1-max">0</section>
+        </section>
+
+        <section class="team-two-max">
+          <p>
+            Team 2 max score:
+          </p>
+          <section class="output-message-team-2-max">0</section>
+        </section>
+      </section>
+
+      <section class="min-scoreboard">
+        <section class="team-one-min">
+          <p>
+            Team 1 min score:
+          </p>
+          <section class="output-message-team-1-min">0</section>
+        </section>
+
+        <section class="team-two-min">
+          <p>
+            Team 2 min score:
+          </p>
+          <section class="output-message-team-2-min">0</section>
+        </section>
+      </section>
+    </section>
+    <section class="output-message"></section>
     <section class="teams">
       <section class="team one">
         <section>
           <h2 class="team-1-name">Team 1</h2>
-          <p class="team-1-score">10</p>
+          <p class="team-1-score">0</p>
         </section>
         <section>
           <section>
@@ -31,7 +66,7 @@
       <section class="team two">
         <section>
           <h2 class="team-2-name">Team 2</h2>
-          <p class="team-2-score">10</p>
+          <p class="team-2-score">0</p>
         </section>
 
         <section>
@@ -48,7 +83,9 @@
         </section>
       </section>
     </section>
-
+    <button class="submit-button" type="submit" onclick="refreshPage()">
+      Reset
+    </button>
     <script src="/main.js" charset="utf-8"></script>
   </body>
 </html>
